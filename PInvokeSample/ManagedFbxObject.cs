@@ -8,10 +8,18 @@ namespace PInvokeSample
 {
     public abstract class ManagedFbxObject
     {
+#if MS_BUILD
         [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
         private static extern IntPtr Object_GetName(IntPtr pObject);
 
+#if MS_BUILD
         [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
         private static extern void Object_SetName(IntPtr pObject, string pName);
 
         protected IntPtr m_nativeObject;
