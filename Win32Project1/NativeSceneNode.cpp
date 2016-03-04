@@ -23,3 +23,15 @@ const void* SceneNode_GetChild(void* pSceneNode, int pIndex)
 	FbxNode* lSceneNode = (FbxNode*)pSceneNode;
 	return lSceneNode->GetChild(pIndex);
 }
+
+const int SceneNode_GetMaterialCount(void* pSceneNode)
+{
+	FbxNode* lSceneNode = (FbxNode*)pSceneNode;
+	return lSceneNode->GetMaterialCount();
+}
+
+const void* SceneNode_GetMaterial(void* pSceneNode, int pIndex)
+{
+	FbxNode* lSceneNode = (FbxNode*)pSceneNode;
+	return lSceneNode->GetMaterial(pIndex);
+}

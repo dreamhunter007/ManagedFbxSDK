@@ -1,6 +1,6 @@
-E:\VS Projects\NativeFBXCapsual\PInvokeSample\bin\Debug\PInvokeSample.exe.config
-E:\VS Projects\NativeFBXCapsual\PInvokeSample\bin\Debug\PInvokeSample.exe
 E:\VS Projects\NativeFBXCapsual\PInvokeSample\bin\Debug\PInvokeSample.pdb
 E:\VS Projects\NativeFBXCapsual\PInvokeSample\obj\Debug\PInvokeSample.csprojResolveAssemblyReference.cache
-E:\VS Projects\NativeFBXCapsual\PInvokeSample\obj\Debug\PInvokeSample.exe
 E:\VS Projects\NativeFBXCapsual\PInvokeSample\obj\Debug\PInvokeSample.pdb
+E:\VS Projects\NativeFBXCapsual\PInvokeSample\bin\Debug\PInvokeSample.dll.config
+E:\VS Projects\NativeFBXCapsual\PInvokeSample\bin\Debug\PInvokeSample.dll
+E:\VS Projects\NativeFBXCapsual\PInvokeSample\obj\Debug\PInvokeSample.dll

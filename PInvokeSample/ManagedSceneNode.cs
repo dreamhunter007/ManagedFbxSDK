@@ -21,6 +21,12 @@ namespace PInvokeSample
         [DllImport("Win32Project1.dll")]
         private static extern IntPtr SceneNode_GetChild(IntPtr pSceneNode, int pIndex);
 
+        [DllImport("Win32Project1.dll")]
+        private static extern int SceneNode_GetMaterialCount(IntPtr pSceneNode);
+
+        [DllImport("Win32Project1.dll")]
+        private static extern IntPtr SceneNode_GetMaterial(IntPtr pSceneNode, int pIndex);
+
         public ManagedSceneNode(IntPtr pPointer)
         {
             m_nativeObject = pPointer;
@@ -45,6 +51,16 @@ namespace PInvokeSample
         public ManagedMesh GetMesh()
         {
             return new ManagedMesh(SceneNode_GetMesh(m_nativeObject));
+        }
+
+        public int GetMaterialCount()
+        {
+            return SceneNode_GetMaterialCount(m_nativeObject);
+        }
+
+        public ManagedMaterial GetMaterial(int pIndex)
+        {
+            return new ManagedMaterial(SceneNode_GetMaterial(m_nativeObject, pIndex));
         }
 
     }
