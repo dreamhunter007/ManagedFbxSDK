@@ -8,23 +8,47 @@ namespace PInvokeSample
 {
     public class ManagedSceneNode :ManagedFbxObject
     {
+#if MS_BUILD
         [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
         private static extern IntPtr SceneNode_Create(IntPtr pContainer, string pName);
 
+#if MS_BUILD
         [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
         private static extern IntPtr SceneNode_GetMesh(IntPtr pSceneNode);
 
 
+#if MS_BUILD
         [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
         private static extern int SceneNode_GetChildCount(IntPtr pSceneNode);
 
+#if MS_BUILD
         [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
         private static extern IntPtr SceneNode_GetChild(IntPtr pSceneNode, int pIndex);
 
+#if MS_BUILD
         [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
         private static extern int SceneNode_GetMaterialCount(IntPtr pSceneNode);
 
+#if MS_BUILD
         [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
         private static extern IntPtr SceneNode_GetMaterial(IntPtr pSceneNode, int pIndex);
 
         public ManagedSceneNode(IntPtr pPointer)

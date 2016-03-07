@@ -8,28 +8,56 @@ namespace PInvokeSample
 {
     public class ManagedManager : ManagedFbxObject
     {
+#if MS_BUILD
         [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
         private static extern IntPtr Manager_Create();
 
+#if MS_BUILD
         [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
         private static extern IntPtr Importer_Create(IntPtr pContainer, string pName);
 
+#if MS_BUILD
         [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
         private static extern bool Importer_Initialize(IntPtr pImporter, string pPath);
 
 
+#if MS_BUILD
         [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
         private static extern bool Importer_Import(IntPtr pImporter, IntPtr pScene);
 
 
+#if MS_BUILD
         [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
         private static extern IntPtr Exporter_Create(IntPtr pContainer, string pName);
 
 
+#if MS_BUILD
         [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
         private static extern bool Exporter_Initialize(IntPtr pExporter, string pPath);
 
+#if MS_BUILD
         [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
         private static extern bool Exporter_Export(IntPtr pExporter, IntPtr pScene);
 
         private IntPtr m_nativeImporter;
