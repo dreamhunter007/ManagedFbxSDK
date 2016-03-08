@@ -14,4 +14,6 @@ extern "C"
 	const EXPORT_API void* Exporter_Create(void* pContainer, const char* pName);
 	bool EXPORT_API Exporter_Initialize(void *pExporter, const char* pPath);
 	bool EXPORT_API Exporter_Export(void* pExporter, void* pScene);
+
+	const EXPORT_API void Triangulate(void* pManager, void* pMesh);
 }

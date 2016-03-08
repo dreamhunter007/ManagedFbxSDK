@@ -60,6 +60,13 @@ namespace PInvokeSample
 #endif
         private static extern bool Exporter_Export(IntPtr pExporter, IntPtr pScene);
 
+#if MS_BUILD
+        [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
+        private static extern void Triangulate(IntPtr pManager, IntPtr pMesh);
+
         private IntPtr m_nativeImporter;
         private IntPtr m_nativeExporter;
 
@@ -86,6 +93,11 @@ namespace PInvokeSample
             if (!Exporter_Export(m_nativeExporter, pManager.NativeObject))
                 return false;
             return true;
+        }
+
+        public void Triangulate(ref ManagedMesh pMesh)
+        {
+            Triangulate(m_nativeObject, pMesh.NativeObject);
         }
 
     }

@@ -35,3 +35,30 @@ const double* Mesh_GetControlPointAt(void* pMesh, int pIndex)
 	}
 	return lReturnValue;
 }
+
+const int Mesh_GetPolygonSize(void* pMesh, int pPolygonIndex)
+{
+	FbxMesh* lMesh = (FbxMesh*)pMesh;
+	return lMesh->GetPolygonSize(pPolygonIndex);
+}
+
+const int Mesh_GetLayerCount(void* pMesh)
+{
+	FbxMesh* lMesh = (FbxMesh*)pMesh;
+	return lMesh->GetLayerCount();
+}
+
+const int Mesh_IsTriangulated(void* pMesh)
+{
+	FbxMesh* lMesh = (FbxMesh*)pMesh;
+	return lMesh->IsTriangleMesh() ? 1 : 0;
+}
+
+const int Mesh_GetMaterialID(void* pMesh, int pPolygonIndex)
+{
+	FbxLayerElementArrayTemplate<int> *materials = nullptr;
+	FbxMesh *lMesh = (FbxMesh*)pMesh;
+	lMesh->GetMaterialIndices(&materials);
+	return materials->GetAt(pPolygonIndex);
+}
+

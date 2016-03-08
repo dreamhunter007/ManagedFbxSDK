@@ -50,10 +50,20 @@ namespace PInvokeSample
     public class ManagedNormal : ManagedFbxObject
     {
 
+
+#if MS_BUILD
         [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
         private static extern int Normal_GetCount(IntPtr pNormal);
 
+
+#if MS_BUILD
         [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
         private static extern IntPtr Normal_GetAt(IntPtr pNormal, int pIndex);
 
         public ManagedNormal(IntPtr pNormalPtr)
@@ -77,10 +87,20 @@ namespace PInvokeSample
     public class ManagedUV : ManagedFbxObject
     {
 
+
+#if MS_BUILD
         [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
         private static extern int UV_GetCount(IntPtr pUV);
 
+
+#if MS_BUILD
         [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
         private static extern IntPtr UV_GetAt(IntPtr pUV, int pIndex);
 
         public ManagedUV(IntPtr pUVPtr)
