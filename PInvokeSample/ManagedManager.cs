@@ -95,7 +95,7 @@ namespace PInvokeSample
             return true;
         }
 
-        public void TriangulateMesh(ref ManagedMesh pMesh)
+        public void TriangulateMesh(ManagedMesh pMesh)
         {
             Manager_TriangulateMesh(m_nativeObject, pMesh.NativeObject);
         }

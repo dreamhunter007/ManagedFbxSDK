@@ -92,7 +92,7 @@ const void* SceneNode_EvaluateGeometricTransform(void* pSceneNode)
 const void* SceneNode_EvaluateLocalTranslation(void* pSceneNode)
 {
 	FbxNode* lSceneNode = (FbxNode*)pSceneNode;
-	FbxVector4 lVector = lSceneNode->EvaluateLocalTranslation();
+	FbxVector4 lVector = lSceneNode->EvaluateLocalTransform().GetT();
 	double* result = new double[4];
 	memcpy(result, lVector.mData, 4 * sizeof(double));
 	return result;
