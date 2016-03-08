@@ -44,7 +44,7 @@ bool Exporter_Export(void* pExporter, void* pScene)
 	return lExporter->Export(lScene);
 }
 
-const void Triangulate(void* pManager, void* pMesh)
+const void TriangulateMesh(void* pManager, void* pMesh)
 {
 	FbxMesh* lMesh = (FbxMesh*)pMesh;
 	if (!lMesh->IsTriangleMesh())
@@ -52,5 +52,6 @@ const void Triangulate(void* pManager, void* pMesh)
 		FbxManager* lManager = (FbxManager*)pManager;
 		FbxGeometryConverter* lConverter = new FbxGeometryConverter(lManager);
 		lConverter->Triangulate(lMesh, true);
+		delete lConverter;
 	}
 }
