@@ -44,7 +44,7 @@ bool Exporter_Export(void* pExporter, void* pScene)
 	return lExporter->Export(lScene);
 }
 
-const void TriangulateMesh(void* pManager, void* pMesh)
+const void Manager_TriangulateMesh(void* pManager, void* pMesh)
 {
 	FbxMesh* lMesh = (FbxMesh*)pMesh;
 	if (!lMesh->IsTriangleMesh())
