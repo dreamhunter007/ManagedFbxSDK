@@ -88,3 +88,30 @@ const void* SceneNode_EvaluateGeometricTransform(void* pSceneNode)
 	}
 	return result;
 }
+
+const void* SceneNode_EvaluateLocalTranslation(void* pSceneNode)
+{
+	FbxNode* lSceneNode = (FbxNode*)pSceneNode;
+	FbxVector4 lVector = lSceneNode->EvaluateLocalTranslation();
+	double* result = new double[4];
+	memcpy(result, lVector.mData, 4 * sizeof(double));
+	return result;
+}
+
+const void* SceneNode_EvaluateLocalScaling(void* pSceneNode)
+{
+	FbxNode* lSceneNode = (FbxNode*)pSceneNode;
+	FbxVector4 lVector = lSceneNode->EvaluateLocalScaling();
+	double* result = new double[4];
+	memcpy(result, lVector.mData, 4 * sizeof(double));
+	return result;
+}
+
+const void* SceneNode_EvaluateLocalRotation(void* pSceneNode)
+{
+	FbxNode* lSceneNode = (FbxNode*)pSceneNode;
+	FbxVector4 lVector = lSceneNode->EvaluateLocalRotation();
+	double* result = new	double[4];
+	memcpy(result, lVector.mData, 4 * sizeof(double));
+	return result;
+}

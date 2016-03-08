@@ -72,6 +72,26 @@ namespace PInvokeSample
 #endif
         private static extern IntPtr SceneNode_EvaluateGeometricTransform(IntPtr pSceneNode);
 
+#if MS_BUILD
+        [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
+        private static extern IntPtr SceneNode_EvaluateLocalTranslation(IntPtr pSceneNode);
+
+#if MS_BUILD
+        [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
+        private static extern IntPtr SceneNode_EvaluateLocalScaling(IntPtr pSceneNode);
+
+#if MS_BUILD
+        [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
+        private static extern IntPtr SceneNode_EvaluateLocalRotation(IntPtr pSceneNode);
 
 
         public ManagedSceneNode(IntPtr pPointer)
@@ -132,6 +152,30 @@ namespace PInvokeSample
             double[] transformData = new double[4 * 4];
             Marshal.Copy(nativeTransform, transformData, 0, 4 * 4);
             return transformData;
+        }
+
+        public double[] EvaluateLocalTranslation()
+        {
+            IntPtr nativeTranslation = SceneNode_EvaluateGeometricTransform(m_nativeObject);
+            double[] translationData = new double[4];
+            Marshal.Copy(nativeTranslation, translationData, 0, 4);
+            return translationData;
+        }
+
+        public double[] EvaluateLocalScaling()
+        {
+            IntPtr nativeScaling = SceneNode_EvaluateLocalScaling(m_nativeObject);
+            double[] scalingData = new double[4];
+            Marshal.Copy(nativeScaling, scalingData, 0, 4);
+            return scalingData;
+        }
+
+        public double[] EvaluateLocalRotation()
+        {
+            IntPtr nativeRotation = SceneNode_EvaluateLocalRotation(m_nativeObject);
+            double[] rotationData = new double[4];
+            Marshal.Copy(nativeRotation, rotationData, 0, 4);
+            return rotationData;
         }
     }
 }
