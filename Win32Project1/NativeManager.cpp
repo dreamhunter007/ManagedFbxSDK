@@ -52,5 +52,6 @@ const void Triangulate(void* pManager, void* pMesh)
 		FbxManager* lManager = (FbxManager*)pManager;
 		FbxGeometryConverter* lConverter = new FbxGeometryConverter(lManager);
 		lConverter->Triangulate(lMesh, true);
+		delete lConverter;
 	}
 }

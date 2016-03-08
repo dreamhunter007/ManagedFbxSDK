@@ -9,4 +9,7 @@ extern "C"
 	const EXPORT_API void*  SceneNode_GetChild(void* pSceneNode, int pIndex);
 	const EXPORT_API int SceneNode_GetMaterialCount(void* pSceneNode);
 	const EXPORT_API void* SceneNode_GetMaterial(void* pSceneNode, int pIndex);
+	const EXPORT_API void* SceneNode_EvaluateLocalTransform(void* pSceneNode);
+	const EXPORT_API void* SceneNode_EvaluateGlobalTransform(void* pSceneNode);
+	const EXPORT_API void* SceneNode_EvaluateGeometricTransform(void* pSceneNode);
 }

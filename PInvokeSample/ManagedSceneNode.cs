@@ -51,6 +51,29 @@ namespace PInvokeSample
 #endif
         private static extern IntPtr SceneNode_GetMaterial(IntPtr pSceneNode, int pIndex);
 
+#if MS_BUILD
+        [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
+        private static extern IntPtr SceneNode_EvaluateLocalTransform(IntPtr pSceneNode);
+
+#if MS_BUILD
+        [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
+        private static extern IntPtr SceneNode_EvaluateGlobalTransform(IntPtr pSceneNode);
+
+#if MS_BUILD
+        [DllImport("Win32Project1.dll")]
+#else
+        [DllImport("Win32Project1")]
+#endif
+        private static extern IntPtr SceneNode_EvaluateGeometricTransform(IntPtr pSceneNode);
+
+
+
         public ManagedSceneNode(IntPtr pPointer)
         {
             m_nativeObject = pPointer;
@@ -87,5 +110,28 @@ namespace PInvokeSample
             return new ManagedMaterial(SceneNode_GetMaterial(m_nativeObject, pIndex));
         }
 
+        public double[] EvaluateLocalTransform()
+        {
+            IntPtr nativeTranform = SceneNode_EvaluateLocalTransform(m_nativeObject);
+            double[] transformData = new double[4 * 4];
+            Marshal.Copy(nativeTranform, transformData, 0, 4 * 4);
+            return transformData;
+        }
+
+        public double[] EvaluateGlobalTransform()
+        {
+            IntPtr nativeTransform = SceneNode_EvaluateGlobalTransform(m_nativeObject);
+            double[] transformData = new double[4 * 4];
+            Marshal.Copy(nativeTransform, transformData, 0, 4 * 4);
+            return transformData;
+        }
+
+        public double [] EvaluateGeometricTransform()
+        {
+            IntPtr nativeTransform = SceneNode_EvaluateGeometricTransform(m_nativeObject);
+            double[] transformData = new double[4 * 4];
+            Marshal.Copy(nativeTransform, transformData, 0, 4 * 4);
+            return transformData;
+        }
     }
 }
