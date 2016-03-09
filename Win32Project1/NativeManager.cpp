@@ -44,14 +44,16 @@ bool Exporter_Export(void* pExporter, void* pScene)
 	return lExporter->Export(lScene);
 }
 
-const void Manager_TriangulateMesh(void* pManager, void* pMesh)
+const void* Manager_TriangulateMesh(void* pManager, void* pMesh)
 {
 	FbxMesh* lMesh = (FbxMesh*)pMesh;
 	if (!lMesh->IsTriangleMesh())
 	{
 		FbxManager* lManager = (FbxManager*)pManager;
 		FbxGeometryConverter* lConverter = new FbxGeometryConverter(lManager);
-		lConverter->Triangulate(lMesh, true);
+		FbxNodeAttribute* resultMesh = lConverter->Triangulate(lMesh, false);
 		delete lConverter;
+		return resultMesh;
 	}
+	return lMesh;
 }

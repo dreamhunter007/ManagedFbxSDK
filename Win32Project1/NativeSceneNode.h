@@ -16,4 +16,12 @@ extern "C"
 	const EXPORT_API void* SceneNode_EvaluateLocalTranslation(void* pSceneNode);
 	const EXPORT_API void* SceneNode_EvaluateLocalScaling(void* pSceneNode);
 	const EXPORT_API void* SceneNode_EvaluateLocalRotation(void* pSceneNode);
+
+	const EXPORT_API void* SceneNode_EvaluateGeometricTranslation(void* pSceneNode);
+	const EXPORT_API void* SceneNode_EvaluateGeometricScaling(void* pSceneNode);
+	const EXPORT_API void* SceneNode_EvaluateGeometricRotation(void* pSceneNode);
+
+	const EXPORT_API void* SceneNode_EvaluateTranslation(void* pSceneNode);
+	const EXPORT_API void* SceneNode_EvaluateScaling(void* pSceneNode);
+	const EXPORT_API void* SceneNode_EvaluateRotation(void* pSceneNode);
 }

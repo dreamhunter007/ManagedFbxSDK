@@ -5,3 +5,5 @@
 #else
 #define EXPORT_API // XCode does not need annotating exported functions, so define is empty
 #endif
+
+double* CopyVecotr4(FbxVector4 vector);

@@ -1,5 +1,24 @@
 #include "NativeSceneNode.h"
 
+FbxAMatrix ComputeSceneMatrix(FbxNode* pNode)
+{
+	FbxAMatrix matrixGeo;
+	matrixGeo.SetIdentity();
+	if (pNode->GetNodeAttribute())
+	{
+		const FbxVector4 lT = pNode->GetGeometricTranslation(FbxNode::eSourcePivot);
+		const FbxVector4 lR = pNode->GetGeometricRotation(FbxNode::eSourcePivot);
+		const FbxVector4 lS = pNode->GetGeometricScaling(FbxNode::eSourcePivot);
+		matrixGeo.SetT(lT);
+		matrixGeo.SetR(lR);
+		matrixGeo.SetS(lS);
+	}
+	FbxAMatrix matrix = pNode->EvaluateLocalTransform();
+
+	matrix = matrix*matrixGeo;
+	return matrix;
+}
+
 const void* SceneNode_Create(void* pContainer, const char* pName)
 {
 	FbxScene *lScene = (FbxScene*)pContainer;
@@ -114,4 +133,55 @@ const void* SceneNode_EvaluateLocalRotation(void* pSceneNode)
 	double* result = new	double[4];
 	memcpy(result, lVector.mData, 4 * sizeof(double));
 	return result;
+}
+
+const void* SceneNode_EvaluateGeometricTranslation(void* pSceneNode)
+{
+	FbxNode* lSceneNode = (FbxNode*)pSceneNode;
+	FbxVector4 lVector = lSceneNode->GeometricTranslation;
+	double* result = new double[4];
+	memcpy(result, lVector.mData, 4 * sizeof(double));
+	return result;
+}
+
+const void* SceneNode_EvaluateGeometricScaling(void* pSceneNode)
+{
+	FbxNode* lSceneNode = (FbxNode*)pSceneNode;
+	FbxVector4 lVector = lSceneNode->GeometricScaling;
+	double * result = new double[4];
+	memcpy(result, lVector.mData, 4 * sizeof(double));
+	return result;
+}
+
+const void* SceneNode_EvaluateGeometricRotation(void* pSceneNode)
+{
+	FbxNode* lSceneNode = (FbxNode*)pSceneNode;
+	FbxVector4 lVector = lSceneNode->GeometricRotation;
+	double* result = new double[4];
+	memcpy(result, lVector.mData, 4 * sizeof(double));
+	return result;
+}
+
+const void* SceneNode_EvaluateTranslation(void* pSceneNode)
+{
+	FbxNode* lSceneNode = (FbxNode*)pSceneNode;
+	FbxAMatrix matrix = ComputeSceneMatrix(lSceneNode);
+	FbxVector4 translate = matrix.GetT();
+	return CopyVecotr4(translate);
+}
+
+const void* SceneNode_EvaluateRotation(void* pSceneNode)
+{
+	FbxNode* lSceneNode = (FbxNode*)pSceneNode;
+	FbxAMatrix matrix = ComputeSceneMatrix(lSceneNode);
+	FbxVector4 rotation = matrix.GetR();
+	return CopyVecotr4(rotation);
+}
+
+const void* SceneNode_EvaluateScaling(void* pSceneNode)
+{
+	FbxNode* lSceneNode = (FbxNode*)pSceneNode;
+	FbxAMatrix matrix = ComputeSceneMatrix(lSceneNode);
+	FbxVector4 scale = matrix.GetS();
+	return CopyVecotr4(scale);
 }
