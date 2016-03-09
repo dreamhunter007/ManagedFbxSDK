@@ -65,7 +65,7 @@ namespace PInvokeSample
 #else
         [DllImport("Win32Project1")]
 #endif
-        private static extern void Manager_TriangulateMesh(IntPtr pManager, IntPtr pMesh);
+        private static extern IntPtr Manager_TriangulateMesh(IntPtr pManager, IntPtr pMesh);
 
         private IntPtr m_nativeImporter;
         private IntPtr m_nativeExporter;
@@ -95,9 +95,10 @@ namespace PInvokeSample
             return true;
         }
 
-        public void TriangulateMesh(ref ManagedMesh pMesh)
+        public ManagedMesh TriangulateMesh(ManagedMesh pMesh)
         {
-            Manager_TriangulateMesh(m_nativeObject, pMesh.NativeObject);
+            IntPtr nativeMesh = Manager_TriangulateMesh(m_nativeObject, pMesh.NativeObject);
+			return new ManagedMesh (nativeMesh);
         }
 
     }
