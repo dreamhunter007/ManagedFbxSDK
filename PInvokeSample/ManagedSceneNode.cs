@@ -93,6 +93,49 @@ namespace PInvokeSample
 #endif
         private static extern IntPtr SceneNode_EvaluateLocalRotation(IntPtr pSceneNode);
 
+		#if MS_BUILD
+		[DllImport("Win32Project1.dll")]
+		#else
+		[DllImport("Win32Project1")]
+		#endif
+		private static extern IntPtr SceneNode_EvaluateGeometricTranslation (IntPtr pSceneNode);
+
+		#if MS_BUILD
+		[DllImport("Win32Project1.dll")]
+		#else
+		[DllImport("Win32Project1")]
+		#endif
+		private static extern IntPtr SceneNode_EvaluateGeometricScaling (IntPtr pSceneNode);
+
+		#if MS_BUILD
+		[DllImport("Win32Project1.dll")]
+		#else
+		[DllImport("Win32Project1")]
+		#endif
+		private static extern IntPtr SceneNode_EvaluateGeometricRotation (IntPtr pSceneNode);
+
+		#if MS_BUILD
+		[DllImport("Win32Project1.dll")]
+		#else
+		[DllImport("Win32Project1")]
+		#endif
+		private static extern IntPtr SceneNode_EvaluateTranslation (IntPtr pSceneNode);
+
+		#if MS_BUILD
+		[DllImport("Win32Project1.dll")]
+		#else
+		[DllImport("Win32Project1")]
+		#endif
+		private static extern IntPtr SceneNode_EvaluateRotation (IntPtr pSceneNode);
+
+
+		#if MS_BUILD
+		[DllImport("Win32Project1.dll")]
+		#else
+		[DllImport("Win32Project1")]
+		#endif
+		private static extern IntPtr SceneNode_EvaluateScaling (IntPtr pSceneNode);
+
 
         public ManagedSceneNode(IntPtr pPointer)
         {
@@ -177,5 +220,48 @@ namespace PInvokeSample
             Marshal.Copy(nativeRotation, rotationData, 0, 4);
             return rotationData;
         }
+
+		public double [] EvaluateGeometricTranslation()
+		{
+			IntPtr nativeTranslation = SceneNode_EvaluateGeometricTranslation (m_nativeObject);
+			double[] translationData = new double[4];
+			Marshal.Copy (nativeTranslation, translationData, 0, 4);
+			return translationData;
+		}
+
+		public double[] EvaluateGeometricScaling()
+		{
+			IntPtr nativeScaling = SceneNode_EvaluateGeometricScaling (m_nativeObject);
+			double[] scalingData = new double[4];
+			Marshal.Copy (nativeScaling, scalingData, 0, 4);
+			return scalingData;
+		}
+
+		public double[] EvaluateGeometricRotation()
+		{
+			IntPtr nativeRotation = SceneNode_EvaluateGeometricRotation(m_nativeObject);
+			double[] rotationData = new double[4];
+			Marshal.Copy(nativeRotation, rotationData, 0, 4);
+			return rotationData;
+		}
+
+		public double[] EvaluateTranslation()
+		{
+			IntPtr nativeTranslation = SceneNode_EvaluateTranslation (m_nativeObject);
+			return ManagedUtility.MarshalDouble (nativeTranslation, 4);
+		}
+
+		public double[] EvaluateRotation()
+		{
+			IntPtr nativeRotation = SceneNode_EvaluateRotation (m_nativeObject);
+			return ManagedUtility.MarshalDouble (nativeRotation, 4);
+		}
+
+		public double[] EvaluateScaling()
+		{
+			IntPtr nativeScale = SceneNode_EvaluateScaling (m_nativeObject);
+			return ManagedUtility.MarshalDouble (nativeScale, 4);
+		}
+
     }
 }
