@@ -48,6 +48,12 @@ const int Mesh_GetLayerCount(void* pMesh)
 	return lMesh->GetLayerCount();
 }
 
+const void* Mesh_GetLayer(void* pMesh, int pLayerIndex)
+{
+	FbxMesh* lMesh = (FbxMesh*)pMesh;
+	return lMesh->GetLayer(pLayerIndex);
+}
+
 const int Mesh_IsTriangulated(void* pMesh)
 {
 	FbxMesh* lMesh = (FbxMesh*)pMesh;

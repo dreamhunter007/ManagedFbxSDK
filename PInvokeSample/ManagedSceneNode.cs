@@ -245,6 +245,7 @@ namespace PInvokeSample
 			return rotationData;
 		}
 
+        /*
 		public double[] EvaluateTranslation()
 		{
 			IntPtr nativeTranslation = SceneNode_EvaluateTranslation (m_nativeObject);
@@ -262,6 +263,7 @@ namespace PInvokeSample
 			IntPtr nativeScale = SceneNode_EvaluateScaling (m_nativeObject);
 			return ManagedUtility.MarshalDouble (nativeScale, 4);
 		}
+         * */
 
     }
 }

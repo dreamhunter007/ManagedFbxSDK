@@ -12,6 +12,7 @@ extern "C"
 
 	const EXPORT_API int Mesh_GetPolygonSize(void* pMesh, int pPolygonIndex);
 	const EXPORT_API int Mesh_GetLayerCount(void* pMesh);
+	const EXPORT_API void* Mesh_GetLayer(void* pMesh, int pLayerIndex);
 	const EXPORT_API int Mesh_IsTriangulated(void* pMesh);
 
 	const EXPORT_API int Mesh_GetMaterialID(void* pMesh, int pPolygonIndex);
