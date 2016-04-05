@@ -16,9 +16,10 @@ extern "C"
 	bool EXPORT_API Exporter_Export(void* pExporter, void* pScene);
 
 	//GeometryConverter
-	const EXPORT_API void* Manager_TriangulateMesh(void* pManager, void* pMesh);
-	bool EXPORT_API Manager_EmulateNormalsByPolygonVertex(void* pManager, void* pMesh);
-	bool EXPORT_API Manager_ComputeEdgeSmoothingFromNormals(void* pManager, void* pMesh);
-	bool EXPORT_API Manager_ComputePolygonSmoothingFromEdgeSmoothing(void* pManager, void* pMesh,int pIndex = 0);
-	bool EXPORT_API Manager_ComputeEdgeSmoothingFromPolygonSmoothing(void* pManager, void* pMesh, int pIndex = 0);
+	const EXPORT_API void* GeometryConverter_Create(void* pManager);
+	const EXPORT_API void* GeometryConverter_TriangulateMesh(void* pGeometryConverter, void* pMesh, bool pReplace, bool pLegacy = false);
+	bool EXPORT_API GeometryConverter_EmulateNormalsByPolygonVertex(void* pGeometryConverter, void* pMesh);
+	bool EXPORT_API GeometryConverter_ComputeEdgeSmoothingFromNormals(void* pGeometryConverter, void* pMesh);
+	bool EXPORT_API GeometryConverter_ComputePolygonSmoothingFromEdgeSmoothing(void* pGeometryConverter, void* pMesh,int pIndex = 0);
+	bool EXPORT_API GeometryConverter_ComputeEdgeSmoothingFromPolygonSmoothing(void* pGeometryConverter, void* pMesh, int pIndex = 0);
 }

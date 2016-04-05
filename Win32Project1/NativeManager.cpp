@@ -44,48 +44,48 @@ bool Exporter_Export(void* pExporter, void* pScene)
 	return lExporter->Export(lScene);
 }
 
-const void* Manager_TriangulateMesh(void* pManager, void* pMesh)
+const void* GeometryConverter_Create(void* pManager){
+	FbxManager* lManager = (FbxManager*)pManager;
+	return new FbxGeometryConverter(lManager);
+}
+
+const void* GeometryConverter_TriangulateMesh(void* pGeometryConverter, void* pMesh, bool pReplace, bool pLegacy)
 {
 	FbxMesh* lMesh = (FbxMesh*)pMesh;
 	if (!lMesh->IsTriangleMesh())
 	{
-		FbxManager* lManager = (FbxManager*)pManager;
-		FbxGeometryConverter* lConverter = new FbxGeometryConverter(lManager);
-		FbxNodeAttribute* resultMesh = lConverter->Triangulate(lMesh, false);
+		FbxGeometryConverter* lConverter = (FbxGeometryConverter*)pGeometryConverter;
+		FbxNodeAttribute* resultMesh = lConverter->Triangulate(lMesh, pReplace, pLegacy);
 		delete lConverter;
 		return resultMesh;
 	}
 	return lMesh;
 }
 
-bool Manager_EmulateNormalsByPolygonVertex(void* pManager, void* pMesh)
+bool GeometryConverter_EmulateNormalsByPolygonVertex(void* pGeometryConverter, void* pMesh)
 {
-	FbxManager* lManager = (FbxManager*)pManager;
 	FbxMesh* lMesh = (FbxMesh*)pMesh;
-	FbxGeometryConverter* lConverter = new FbxGeometryConverter(lManager);
+	FbxGeometryConverter* lConverter = (FbxGeometryConverter*)pGeometryConverter;
 	return lConverter->EmulateNormalsByPolygonVertex(lMesh);
 }
 
-bool Manager_ComputeEdgeSmoothingFromNormals(void* pManager, void* pMesh)
+bool GeometryConverter_ComputeEdgeSmoothingFromNormals(void* pGeometryConverter, void* pMesh)
 {
-	FbxManager* lManager = (FbxManager*)pManager;
 	FbxMesh* lMesh = (FbxMesh*)pMesh;
-	FbxGeometryConverter* lConverter = new FbxGeometryConverter(lManager);
+	FbxGeometryConverter* lConverter = (FbxGeometryConverter*)pGeometryConverter;
 	return lConverter->ComputeEdgeSmoothingFromNormals(lMesh);
 }
 
-bool Manager_ComputePolygonSmoothingFromEdgeSmoothing(void* pManager, void* pMesh, int pIndex )
+bool GeometryConverter_ComputePolygonSmoothingFromEdgeSmoothing(void* pGeometryConverter, void* pMesh, int pIndex)
 {
-	FbxManager* lManager = (FbxManager*)pManager;
 	FbxMesh* lMesh = (FbxMesh*)pMesh;
-	FbxGeometryConverter* lConverter = new FbxGeometryConverter(lManager);
+	FbxGeometryConverter* lConverter = (FbxGeometryConverter*)pGeometryConverter;
 	return lConverter->ComputePolygonSmoothingFromEdgeSmoothing(lMesh, pIndex);
 }
 
-bool  Manager_ComputeEdgeSmoothingFromPolygonSmoothing(void* pManager, void* pMesh, int pIndex )
+bool  GeometryConverter_ComputeEdgeSmoothingFromPolygonSmoothing(void* pGeometryConverter, void* pMesh, int pIndex)
 {
-	FbxManager* lManager = (FbxManager*)pManager;
 	FbxMesh* lMesh = (FbxMesh*)pMesh;
-	FbxGeometryConverter* lConverter = new FbxGeometryConverter(lManager);
+	FbxGeometryConverter* lConverter = (FbxGeometryConverter*)pGeometryConverter;
 	return lConverter->ComputeEdgeSmoothingFromPolygonSmoothing(lMesh, pIndex);
 }
